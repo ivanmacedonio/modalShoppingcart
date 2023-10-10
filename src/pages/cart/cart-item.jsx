@@ -6,6 +6,20 @@ export const CartItem = (props) => {
   const { cartItems, addToCart, removeFromCart, updateCartItemCount } =
     useContext(ShopContext);
 
+  function handleAdd(id, e) {
+    e.stopPropagation();
+    addToCart(id);
+  }
+
+  function handleRemove(id, e) {
+    e.stopPropagation();
+    removeFromCart(id);
+  }
+
+  function handleUpdate(id, e) {
+    e.stopPropagation();
+  }
+
   return (
     <div className="cartItem">
       <img src={productImage} />
@@ -15,12 +29,9 @@ export const CartItem = (props) => {
         </p>
         <p> Price: ${price}</p>
         <div className="countHandler">
-          <button onClick={() => removeFromCart(id)}> - </button>
-          <input
-            value={cartItems[id]}
-            onChange={(e) => updateCartItemCount(Number(e.target.value), id)}
-          />
-          <button onClick={() => addToCart(id)}> + </button>
+          <button onClick={(e) => handleRemove(id, e)}> - </button>
+          <input onClick={(e) => e.stopPropagation()} value={cartItems[id]} />
+          <button onClick={(e) => handleAdd(id, e)}> + </button>
         </div>
       </div>
     </div>

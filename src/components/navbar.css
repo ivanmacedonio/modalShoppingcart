@@ -6,6 +6,10 @@
     justify-content: flex-end;
     align-items: center;
   }
+  .navbar button{
+    margin-left: 20px;
+    font-size: 20px;
+  }
   
   .links {
     margin-right: 50px;
